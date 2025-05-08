@@ -12,7 +12,7 @@ public class AdjustVolume : MonoBehaviour
         float savedVolume = PlayerPrefs.GetFloat("volume", 1f);
         volumeSlider.value = savedVolume;
         AudioListener.volume = savedVolume;
-        volumeText.text = Mathf.RoundToInt(savedVolume * 100) + "%";
+        volumeText.text = "Volume: " + Mathf.RoundToInt(savedVolume * 100) + "%";
 
         volumeSlider.onValueChanged.AddListener(SetVolume);
     }

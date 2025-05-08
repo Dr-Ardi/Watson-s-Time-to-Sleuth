@@ -12,12 +12,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("CasesScene");
     }
-
-    public void OpenSetting() 
-    {
-        SceneManager.LoadScene("SettingsScene");
-    }
-
+    
     public void QuitGame() 
     {
         Application.Quit();
