@@ -11,7 +11,6 @@ namespace WatsonMovementControl
             VirtualInputManager.Instance.MoveLeft = Keyboard.current.aKey.isPressed;
             VirtualInputManager.Instance.MoveBackward = Keyboard.current.wKey.isPressed;
             VirtualInputManager.Instance.MoveForward = Keyboard.current.sKey.isPressed;
-            
         }
     }
 }
