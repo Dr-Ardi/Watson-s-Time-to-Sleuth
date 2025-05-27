@@ -5,7 +5,7 @@ namespace WatsonMovementControl
     [RequireComponent(typeof(CharacterController))]
     public class Watson : MonoBehaviour
     {
-        public float speed = 10f;
+        public float speed = 5f;
         private CharacterController controller;
 
         void Start()
