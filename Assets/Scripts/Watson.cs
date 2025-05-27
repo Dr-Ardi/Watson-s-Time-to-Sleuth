@@ -2,15 +2,33 @@ using UnityEngine;
 
 namespace WatsonMovementControl
 {
+    [RequireComponent(typeof(CharacterController))]
     public class Watson : MonoBehaviour
     {
+        public float speed = 10f;
+        private CharacterController controller;
+
+        void Start()
+        {
+            controller = GetComponent<CharacterController>();
+        }
+
         void Update()
         {
-            if (VirtualInputManager.Instance.MoveRight) {   this.gameObject.transform.Translate(Vector3.right * 10f * Time.deltaTime);  }
-            if (VirtualInputManager.Instance.MoveLeft) {   this.gameObject.transform.Translate(Vector3.left * 10f * Time.deltaTime);  }
-            if (VirtualInputManager.Instance.MoveForward) {   this.gameObject.transform.Translate(Vector3.forward * 10f * Time.deltaTime);  }
-            if (VirtualInputManager.Instance.MoveBackward) {   this.gameObject.transform.Translate(-Vector3.forward * 10f * Time.deltaTime);  }
+            Vector3 move = Vector3.zero;
+
+            if (VirtualInputManager.Instance.MoveRight)
+                move += Vector3.right;
+            if (VirtualInputManager.Instance.MoveLeft)
+                move += Vector3.left;
+            if (VirtualInputManager.Instance.MoveForward)
+                move += Vector3.forward;
+            if (VirtualInputManager.Instance.MoveBackward)
+                move += Vector3.back;
+
+            controller.Move(move.normalized * speed );
         }
     }
 }
+
 
