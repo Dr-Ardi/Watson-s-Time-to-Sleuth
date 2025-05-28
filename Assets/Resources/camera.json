@@ -1,0 +1,7 @@
+{
+  "positions": {
+    "221b_living_room": { "position": { "x": "-57", "y": "94", "z": "-402" }, "rotation": { "x": "30", "y": "0", "z": "0" } },
+    "221b_bed_room_john": { "position": { "x": "100", "y": "94", "z": "-402" }, "rotation": { "x": "30", "y": "0", "z": "0" } },
+    "221b_bed_room_sherlock": { "position": { "x": "-30", "y": "94", "z": "-300" }, "rotation": { "x": "30", "y": "-90", "z": "0" } }
+  }
+}
