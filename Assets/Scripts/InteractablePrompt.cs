@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractablePrompt : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class InteractablePrompt : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerNearby && !isAcquired && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerNearby && !isAcquired && Keyboard.current.eKey.isPressed)
         {
             AcquireItem();
         }

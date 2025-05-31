@@ -7,6 +7,7 @@ namespace WatsonMovementControl
     {
         public float speed = 5f;
         private CharacterController controller;
+        public Animator animator;
 
         void Start()
         {
@@ -21,12 +22,28 @@ namespace WatsonMovementControl
                 move += Vector3.right;
             if (VirtualInputManager.Instance.MoveLeft)
                 move += Vector3.left;
-            if (VirtualInputManager.Instance.MoveForward)
-                move += Vector3.forward;
             if (VirtualInputManager.Instance.MoveBackward)
+                move += Vector3.forward;
+            if (VirtualInputManager.Instance.MoveForward)
                 move += Vector3.back;
 
-            controller.Move(move.normalized * speed );
+            if (move != Vector3.zero)
+            {
+                // Rotate instantly to direction
+                transform.rotation = Quaternion.LookRotation(move.normalized);
+
+                // Move forward
+                controller.Move(transform.forward * speed * Time.deltaTime);
+
+                // Set walking animation
+                animator.SetBool("IsWalking", true);
+            }
+            else
+            {
+                // Not moving: idle animation
+                animator.SetBool("IsWalking", false);
+            }
+
         }
     }
 }
