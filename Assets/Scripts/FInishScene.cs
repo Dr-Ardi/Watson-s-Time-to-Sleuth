@@ -7,6 +7,8 @@ namespace WatsonMovementControl
         public string requiredKeyName = "Door Key";
         public string successMessage = "You finished the tutorial!";
 
+        public GameObject message;
+
         private bool isPlayerNear = false;
         private PlayerInventory playerInventory;
 
@@ -34,7 +36,7 @@ namespace WatsonMovementControl
             {
                 if (HasKey())
                 {
-                    Debug.Log(successMessage);
+                    message.SetActive(true);
                 }
             }
         }
