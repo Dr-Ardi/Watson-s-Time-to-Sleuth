@@ -1,55 +1,61 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PopupController : MonoBehaviour
+namespace WatsonMovementControl
 {
-    public GameObject popupPanel;
-    public bool uiItem = false;
-    
-    private bool isPlayerNearby = false;
-
-
-    public void Update()
+    public class PopupController : MonoBehaviour
     {
-        if (uiItem)
+        public GameObject popupPanel;
+        public bool uiItem = false;
+
+        private bool isPlayerNearby = false;
+
+
+        public void Update()
         {
-            if (Keyboard.current.tabKey.wasPressedThisFrame)
+            if (uiItem)
             {
-                popupPanel.SetActive(!popupPanel.activeSelf);
+                if (Keyboard.current.tabKey.wasPressedThisFrame)
+                {
+                    popupPanel.SetActive(!popupPanel.activeSelf);
+                    VirtualInputManager.Instance.Frozen = popupPanel.activeSelf;
+                }
+            }
+            else
+            {
+                if (isPlayerNearby && Keyboard.current.eKey.wasPressedThisFrame)
+                {
+                    ShowPopup();
+                }
             }
         }
-        else
+
+        private void OnTriggerEnter(Collider other)
         {
-            if (isPlayerNearby && Keyboard.current.eKey.wasPressedThisFrame)
+            if (other.CompareTag("Player"))
             {
-                popupPanel.SetActive(true);
+                isPlayerNearby = true;
             }
         }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        private void OnTriggerExit(Collider other)
         {
-            isPlayerNearby = true;
+            if (other.CompareTag("Player"))
+            {
+                isPlayerNearby = false;
+            }
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        public void ShowPopup()
         {
-            isPlayerNearby = false;
+            popupPanel.SetActive(true);
+            VirtualInputManager.Instance.Frozen = true;
         }
-    }
 
-    public void ShowPopup()
-    {
-        popupPanel.SetActive(true);
-    }
-
-    public void HidePopup()
-    {
-        popupPanel.SetActive(false);
+        public void HidePopup()
+        {
+            popupPanel.SetActive(false);
+            VirtualInputManager.Instance.Frozen = false;
+        }
     }
 }
