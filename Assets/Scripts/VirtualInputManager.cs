@@ -23,6 +23,7 @@ namespace WatsonMovementControl
         public bool MoveForward;
         public bool MoveBackward;
         public bool Interacts;
+        public bool CheckInventory;
         public bool Run;
         public bool Frozen; 
     }

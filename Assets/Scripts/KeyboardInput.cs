@@ -13,6 +13,7 @@ namespace WatsonMovementControl
             VirtualInputManager.Instance.MoveForward = Keyboard.current.sKey.isPressed && !VirtualInputManager.Instance.Frozen;
             VirtualInputManager.Instance.Interacts = Keyboard.current.eKey.isPressed && !VirtualInputManager.Instance.Frozen;
             VirtualInputManager.Instance.Run = Keyboard.current.shiftKey.isPressed && !VirtualInputManager.Instance.Frozen;
+            VirtualInputManager.Instance.CheckInventory = Keyboard.current.iKey.isPressed && !VirtualInputManager.Instance.Frozen;
         }
     }
 }
