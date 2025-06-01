@@ -56,6 +56,11 @@ namespace WatsonMovementControl
         {
             popupPanel.SetActive(false);
             VirtualInputManager.Instance.Frozen = false;
+            TutorialManager tm = FindObjectOfType<TutorialManager>();
+            if (tm.step == 2)
+            {
+                tm.ShowMessage("Remember, you don't have all day to solve the crime. The more it takes you the less the cops will trust you judgement.", 8f);
+            }
         }
     }
 }
