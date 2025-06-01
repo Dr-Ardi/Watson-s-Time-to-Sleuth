@@ -1,8 +1,47 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PopupController : MonoBehaviour
 {
     public GameObject popupPanel;
+    public bool uiItem = false;
+    
+    private bool isPlayerNearby = false;
+
+
+    public void Update()
+    {
+        if (uiItem)
+        {
+            if (Keyboard.current.tabKey.wasPressedThisFrame)
+            {
+                popupPanel.SetActive(!popupPanel.activeSelf);
+            }
+        }
+        else
+        {
+            if (isPlayerNearby && Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                popupPanel.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNearby = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNearby = false;
+        }
+    }
 
     public void ShowPopup()
     {

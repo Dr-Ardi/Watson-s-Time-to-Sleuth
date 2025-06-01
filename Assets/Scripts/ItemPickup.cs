@@ -23,10 +23,9 @@ namespace WatsonMovementControl
                 if (player != null)
                 {
                     PlayerInventory inventory = player.GetComponent<PlayerInventory>();
-                    if (inventory != null)
+                    if (inventory != null && !inventory.items.Contains(itemData))
                     {
                         inventory.AddItem(itemData);
-                        Destroy(gameObject); // Optional: remove the key after pickup
                         Debug.Log("Picked up!");
                     }
                 }

@@ -5,6 +5,8 @@ public class CameraTrigger : MonoBehaviour
 {
     public string rightKeyCamera = "221b_bed_room_john";
     public string leftKeyCamera = "221b_living_room";
+
+    public bool hDirection = true;
     private bool playerInside = false;
     private GameObject player;
 
@@ -32,20 +34,42 @@ public class CameraTrigger : MonoBehaviour
             return;
 
         // Check for player input while inside trigger
-        if (Keyboard.current.dKey.isPressed)
+        if (hDirection)
         {
-            Camera mainCam = Camera.main;
-            if (mainCam != null)
+            if (Keyboard.current.dKey.isPressed)
             {
-                CameraPositionManager.Instance.MoveCameraTo(rightKeyCamera, mainCam);
+                Camera mainCam = Camera.main;
+                if (mainCam != null)
+                {
+                    CameraPositionManager.Instance.MoveCameraTo(rightKeyCamera, mainCam);
+                }
+            }
+            else if (Keyboard.current.aKey.isPressed)
+            {
+                Camera mainCam = Camera.main;
+                if (mainCam != null)
+                {
+                    CameraPositionManager.Instance.MoveCameraTo(leftKeyCamera, mainCam);
+                }
             }
         }
-        else if (Keyboard.current.aKey.isPressed)
+        else
         {
-            Camera mainCam = Camera.main;
-            if (mainCam != null)
+            if (Keyboard.current.wKey.isPressed)
             {
-                CameraPositionManager.Instance.MoveCameraTo(leftKeyCamera, mainCam);
+                Camera mainCam = Camera.main;
+                if (mainCam != null)
+                {
+                    CameraPositionManager.Instance.MoveCameraTo(rightKeyCamera, mainCam);
+                }
+            }
+            else if (Keyboard.current.sKey.isPressed)
+            {
+                Camera mainCam = Camera.main;
+                if (mainCam != null)
+                {
+                    CameraPositionManager.Instance.MoveCameraTo(leftKeyCamera, mainCam);
+                }
             }
         }
     }

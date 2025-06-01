@@ -141,6 +141,20 @@ public class CameraPositionManager : MonoBehaviour
             );
         }
 
+        if (locationKey == "221b_bed_room_sherlock")
+        {
+            position = new Vector3Data(
+                71,
+                96,
+                -108
+            );
+            rotation = new Vector3Data(
+                30,
+                0,
+                0
+            );
+        }
+
         camera.transform.position = position.ToVector3();
         camera.transform.rotation = Quaternion.Euler(rotation.ToVector3());
     }
