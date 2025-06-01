@@ -32,8 +32,13 @@ namespace WatsonMovementControl
                 // Rotate instantly to direction
                 transform.rotation = Quaternion.LookRotation(move.normalized);
 
+                float walkspeed = speed;
+
+                if (VirtualInputManager.Instance.Run)
+                    walkspeed *= 2;
+
                 // Move forward
-                controller.Move(transform.forward * speed * Time.deltaTime);
+                controller.Move(transform.forward * walkspeed * Time.deltaTime);
 
                 // Set walking animation
                 animator.SetBool("IsWalking", true);

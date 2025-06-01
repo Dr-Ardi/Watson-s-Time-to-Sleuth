@@ -48,3 +48,5 @@ MonoBehaviour:
   MoveLeft: 0
   MoveForward: 0
   MoveBackward: 0
+  Interacts: 0
+  Frozen: 0
