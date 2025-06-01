@@ -18,7 +18,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        ShowMessage("Use W A S D to walk", 3f);
+        ShowMessage("Use W A S D to walk and hold Shift to Run", 3f);
     }
 
     void Update()
@@ -27,7 +27,7 @@ public class TutorialManager : MonoBehaviour
         if (step == 0 && moved && !skipped)
         {
             CancelInvoke(nameof(HideMessage));
-            Invoke(nameof(HideMessage), 0);
+            Invoke(nameof(HideMessage), 1);
         }
         if (step == 1 && !calledE && !skipped)
         {
