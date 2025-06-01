@@ -155,6 +155,76 @@ public class CameraPositionManager : MonoBehaviour
             );
         }
 
+        if (locationKey == "one")
+        {
+            position = new Vector3Data(
+                346,
+                239,
+                -533
+            );
+            rotation = new Vector3Data(
+                20,
+                0,
+                0
+            );
+        }
+
+        if (locationKey == "two")
+        {
+            position = new Vector3Data(
+                -356,
+                239,
+                -533
+            );
+            rotation = new Vector3Data(
+                20,
+                0,
+                0
+            );
+        }
+
+        if (locationKey == "three")
+        {
+            position = new Vector3Data(
+                -930,
+                239,
+                -533
+            );
+            rotation = new Vector3Data(
+                20,
+                0,
+                0
+            );
+        }
+
+        if (locationKey == "four")
+        {
+            position = new Vector3Data(
+                -1822,
+                239,
+                -533
+            );
+            rotation = new Vector3Data(
+                20,
+                0,
+                0
+            );
+        }
+
+        if (locationKey == "five")
+        {
+            position = new Vector3Data(
+                1179,
+                239,
+                -533
+            );
+            rotation = new Vector3Data(
+                20,
+                0,
+                0
+            );
+        }
+
         camera.transform.position = position.ToVector3();
         camera.transform.rotation = Quaternion.Euler(rotation.ToVector3());
     }
