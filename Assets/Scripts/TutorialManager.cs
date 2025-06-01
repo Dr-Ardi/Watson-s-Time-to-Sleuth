@@ -12,6 +12,9 @@ public class TutorialManager : MonoBehaviour
     private bool calledE = false;
     private bool calledEx = false;
     private bool calledF = false;
+    public bool calledt = false;
+
+    public bool skipped = false;
 
     void Start()
     {
@@ -21,23 +24,27 @@ public class TutorialManager : MonoBehaviour
     void Update()
     {
         bool moved = (VirtualInputManager.Instance.MoveRight || VirtualInputManager.Instance.MoveLeft || VirtualInputManager.Instance.MoveBackward || VirtualInputManager.Instance.MoveForward);
-        if (step == 0 && moved) {
+        if (step == 0 && moved && !skipped)
+        {
             CancelInvoke(nameof(HideMessage));
             Invoke(nameof(HideMessage), 0);
         }
-        if (step == 1 && !calledE) {
+        if (step == 1 && !calledE && !skipped)
+        {
             ShowMessage("There's a Note on the table", 0f);
             calledE = true;
         }
-        if (step == 1 && calledE && VirtualInputManager.Instance.Interacts) {
-            CancelInvoke(nameof(HideMessage));
+        if (step == 1 && calledE && VirtualInputManager.Instance.Interacts && !skipped)
+        {
             Invoke(nameof(HideMessage), 0);
         }
-        if (step == 3 && !calledEx) {
+        if (step == 3 && !calledEx && !skipped) 
+        {
             ShowMessage("Additional buttons, I for Inventory, and Tab for Settings", 5f);
             calledEx = true;
         }
-        if (step == 4 && !calledF) {
+        if (step == 4 && !calledF && !skipped)
+        {
             ShowMessage("Now, get the key to the front door and leave the house.", 3f);
             calledF = true;
         }
@@ -60,5 +67,12 @@ public class TutorialManager : MonoBehaviour
     {
         popupPanel.SetActive(false);
         step += 1;
+    }
+
+    public void SKip()
+    {
+        skipped = true;
+        CancelInvoke(nameof(HideMessage));
+        Invoke(nameof(HideMessage), 0);
     }
 }
