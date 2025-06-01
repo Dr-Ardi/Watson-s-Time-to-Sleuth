@@ -16,6 +16,8 @@ public class TutorialManager : MonoBehaviour
 
     public bool skipped = false;
 
+    private bool cancellingF = false;
+
     void Start()
     {
         ShowMessage("Use W A S D to walk and hold Shift to Run", 3f);
@@ -26,8 +28,12 @@ public class TutorialManager : MonoBehaviour
         bool moved = (VirtualInputManager.Instance.MoveRight || VirtualInputManager.Instance.MoveLeft || VirtualInputManager.Instance.MoveBackward || VirtualInputManager.Instance.MoveForward);
         if (step == 0 && moved && !skipped)
         {
-            CancelInvoke(nameof(HideMessage));
-            Invoke(nameof(HideMessage), 1);
+            if (!cancellingF)
+            {
+                cancellingF = true;
+                CancelInvoke(nameof(HideMessage));
+                Invoke(nameof(HideMessage), 1);
+            }
         }
         if (step == 1 && !calledE && !skipped)
         {
